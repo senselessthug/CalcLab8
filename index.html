@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <h2>Калькулятор</h2>
+        <form id="calcForm">
+            <input id="num1" type="number" placeholder="Число 1" required step="any">
+            <input id="num2" type="number" placeholder="Число 2" required step="any">
+            <div class="operations">
+                <button type="button" onclick="calculate('+')">+</button>
+                <button type="button" onclick="calculate('-')">−</button>
+                <button type="button" onclick="calculate('*')">×</button>
+                <button type="button" onclick="calculate('/')">÷</button>
+            </div>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function calculate(operation) {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            var result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                result = 'Будь ласка, введіть коректні числа!';
+            } else {
+                switch (operation) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        if (num2 !== 0) {
+                            result = num1 / num2;
+                        } else {
+                            result = 'Помилка: ділення на нуль!';
+                        }
+                        break;
+                    default:
+                        result = 'Невідома операція';
+                }
+            }
+
+            document.getElementById('result').innerHTML = 'Результат: ' + result;
+        }
+    </script>
+</body>
+</html>
